@@ -1,5 +1,5 @@
 # ignore databases
-.sqlite3
+src/db.sqlite3
 
 # ignore virtualenv
 eschoolenv
