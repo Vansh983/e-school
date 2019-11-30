@@ -1,0 +1,71 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>eSchool | Log in</title>
+
+		<!-- Custom CSS stylesheets -->
+		<link rel="stylesheet" type="text/css" href="{% static 'css/login/login.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/login/topnav.css' %}">
+
+		<!-- External CSS stylesheets -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu">
+
+		<!-- Custom JS scripts -->
+		<script type="text/javascript" src="{% static 'js/login/responsive_topnav.js' %}"></script>
+
+		<!-- External JS scripts -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+	</head>
+	<body>
+		<!-- TOPNAV -->
+		<div class="topnav" id="categories">
+			<a href="/" class="active">Home</a>
+			<a href="/accounts/login/">Log in</a>
+			<a href="/about/">About</a>
+			<a href="/contact/">Contact</a>
+			<a href="javascript:void(0);" style="font-size: 15px;" class="icon" onclick="responsive();"><i class="fa fa-bars"></i></a>
+		</div>
+
+		<!-- HEADER -->
+		<h1 style="text-align: center; font-family: Ubuntu;">Welcome to eSchool</h1>
+		<div class="alert alert-danger" align="center">
+			<b>Warning!</b>&nbsp;This page is under development, so it could be unstable.<br />
+			Thank you for your comprehension.
+		</div>
+
+		<!-- MAIN CONTENT -->
+		<div class="main" id="main" style="height: 300px;">
+			<div class="login_form col-lg-6 col-md-6 col-sm-12 col-xs-12" id="login_form">
+				<form name="login" method="POST">
+					{% csrf_token %}
+					{{ form.non_field_errors }}
+					{% for hidden_field in form.hidden_fields %}
+						{{ hidden_field.errors }}
+						{{ hidden_field }}
+					{% endfor %}
+
+					<h3 style="padding-top: 5px; font-family: Ubuntu;"><u>Log in</u></h3>
+					{% for field in form.visible_fields %}
+						{{ field.errors }}
+						{{ field }}
+						{{ field.help_text }}<br /><br />
+					{% endfor %}
+					<button class="button" id="button" type="submit" name="submit" style="vertical-align: middle; width: 200px; font-size: 28px;"><span>Log in</span></button><br /><br />
+					<a href="/accounts/register/" style="color: blue;">Don't have an account?</a>
+				</form>
+			</div>
+			<div class="welcome_icon col-lg-6 col-md-6 col-sm-12 col-xs-12">
+				<img src="{% static 'img/welcome.png' %}" />
+			</div>
+		</div>
+	</body>
+</html>
